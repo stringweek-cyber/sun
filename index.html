@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>천지선 포트폴리오</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --ink:#1a1a1a; --sub:#4d4d4d; --muted:#8a8a8a; --line:#e6e6e6;
+  --bg:#ffffff; --soft:#f6f6f6; --orange:#F27322; --orange-soft:#fdf1e8;
+  --bar:4.25rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:clamp(12px, calc(100vw / 96), 20px)}
+body{background:var(--bg);color:var(--ink);
+  font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR","Malgun Gothic",sans-serif;
+  -webkit-font-smoothing:antialiased;letter-spacing:-0.01em;word-break:keep-all;overflow-wrap:break-word}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ---------- top bar + mega menu ---------- */
+.topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.bar{height:var(--bar);display:flex;align-items:center;padding:0 3rem}
+.logo{width:16.25rem;flex:none;font-size:1.125rem;font-weight:800;letter-spacing:-0.02em}
+.nav{display:flex;height:var(--bar)}
+.nav li{width:10.62rem;position:relative;display:flex;align-items:center;justify-content:center}
+.nav li a{font-size:1rem;font-weight:500;color:#333;display:flex;align-items:center;height:100%}
+.nav li::after{content:"";position:absolute;left:1.5rem;right:1.5rem;bottom:-1px;height:0.1875rem;background:var(--orange);
+  transform:scaleX(0);transition:transform .2s}
+.nav li:hover::after{transform:scaleX(1)}
+.nav li:hover a{font-weight:700;color:var(--ink)}
+.mega{display:none;position:absolute;left:0;right:0;top:var(--bar);background:#fff;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);box-shadow:0 0.75rem 1.5rem rgba(0,0,0,.05)}
+.topbar:hover .mega{display:block}
+.mega .cols{display:flex;padding-left:19.25rem}
+.mega .col{width:10.62rem;min-height:6.875rem;padding:1.25rem 0 1.5rem;text-align:center}
+.mega .col a{display:block;font-size:0.9062rem;color:var(--sub);padding:0.4375rem 0}
+.mega .col a:hover{color:var(--orange)}
+
+/* ---------- right wing (follows scroll) ---------- */
+.wing{position:absolute;right:2rem;top:0;z-index:10;will-change:transform;width:11.5rem;background:#fff;border:1px solid var(--line);
+  border-radius:0.5rem;padding:1rem 1rem 1.125rem;box-shadow:0 0.375rem 1.125rem rgba(0,0,0,.06);display:flex;justify-content:center}
+.wing .in{width:max-content;max-width:100%}
+.wing .h{font-size:0.875rem;font-weight:700}
+.wing .list{margin-top:0.625rem;display:flex;flex-direction:column;gap:0.4375rem}
+.wing .list span,.wing .list a{font-size:0.8125rem;color:var(--sub)}
+.wing .list a:hover{color:var(--ink)}
+.wing .list a.on{color:var(--orange);font-weight:700}
+
+/* ---------- layout ---------- */
+.content{padding:0 16rem 0 6rem}
+.page{padding:2.5rem 0 6.5rem;scroll-margin-top:var(--bar)}
+.sub{scroll-margin-top:calc(var(--bar) + 1.5rem)}
+
+/* ---------- 소개 ---------- */
+.hero .apply{font-size:1rem;color:var(--ink);font-weight:500}
+.hero .name{font-size:3.125rem;font-weight:800;letter-spacing:-0.03em;margin-top:0.625rem;line-height:1.15}
+.sec{margin-top:3.5rem}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.25rem;margin-bottom:1.062rem}
+.sec-head h2{font-size:1.438rem;font-weight:800;letter-spacing:-0.02em}
+.legend{display:flex;gap:1.062rem;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:0.375rem;font-size:0.8438rem;color:var(--sub)}
+.legend .ico{width:1.625rem;height:1.625rem}
+.stats{border-top:1px solid var(--line)}
+.stat{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:1.5rem;padding:0.6875rem 0.375rem;border-bottom:1px solid var(--line);transition:background .15s}
+.stat:hover{background:#fafafa}
+.stat .pj{font-size:0.8438rem;color:var(--muted);font-weight:700}
+.stat .txt{font-size:1.156rem;font-weight:700;line-height:1.45;margin-top:2px;white-space:nowrap}
+.stat .txt .big{font-size:1.375rem;font-weight:800;color:var(--orange)}
+.stat .icons{display:grid;grid-template-columns:repeat(3,2.562rem);gap:0.4375rem}
+.stat .icons .slot{width:2.562rem;height:2.562rem}
+.stat .icons .ico{background:var(--soft);border-radius:0.6875rem;padding:0.3438rem;width:2.562rem;height:2.562rem}
+.stat .go{font-size:0.875rem;color:var(--muted);font-weight:600;white-space:nowrap}
+.stat:hover .go{color:var(--orange)}
+.caps{display:grid;grid-template-columns:1fr 1fr;position:relative}
+.caps::before{content:"";position:absolute;left:50%;top:0.375rem;bottom:0.375rem;border-left:1.5px dashed #cfcfcf}
+.cap{padding:0.25rem 2.75rem 0.5rem 0.375rem}
+.cap + .cap{padding:0.25rem 0.375rem 0.5rem 2.75rem}
+.cap h3{font-size:1.156rem;font-weight:800;margin-bottom:0.6875rem}
+.cap li{position:relative;padding-left:0.9375rem;font-size:1.062rem;line-height:1.55;color:var(--ink);margin:0.375rem 0}
+.cap li::before{content:"";position:absolute;left:0;top:.7em;width:0.3125rem;height:0.3125rem;border-radius:50%;background:var(--ink)}
+.meta{margin-top:1.75rem;border-top:1px solid var(--line)}
+.meta .row{display:grid;grid-template-columns:8.125rem 1fr;gap:1rem;padding:0.9375rem 0.25rem;border-bottom:1px solid var(--line);align-items:baseline}
+.meta .row b{font-size:0.9375rem;font-weight:700;color:var(--muted)}
+.meta .row p{font-size:1.062rem;color:var(--ink);line-height:1.6}
+
+/* ---------- PROJECT ---------- */
+.phead{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:2rem}
+.eyebrow{font-size:0.9375rem;color:var(--ink);font-weight:500}
+.phead h1{font-size:2.125rem;line-height:1.35;font-weight:800;margin:0.5rem 0 0.375rem;letter-spacing:-0.03em;white-space:nowrap}
+.lead{font-size:1.125rem;line-height:1.6;color:var(--sub);white-space:nowrap}
+.duty{margin-top:1.125rem;display:grid;grid-template-columns:auto 1fr;column-gap:0.875rem;row-gap:0.5rem;font-size:1rem;line-height:1.55;color:var(--ink)}
+.duty em{font-style:normal;font-size:0.875rem;color:var(--muted);font-weight:700;line-height:1.75;white-space:nowrap}
+.duty li{position:relative;padding-left:0.8125rem}
+.duty li::before{content:"";position:absolute;left:0;top:.72em;width:0.25rem;height:0.25rem;border-radius:50%;background:var(--ink)}
+.mwrap{display:flex;justify-content:center}
+.metric{background:var(--soft);border-radius:1.125rem;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.metric .lab{font-size:0.875rem;color:var(--muted);font-weight:700;line-height:1.4}
+.metric .row{display:flex;align-items:flex-end;gap:0.6875rem}
+.metric .before{font-size:1.562rem;font-weight:700;color:#a0a0a0;line-height:1}
+.metric .after{font-size:2.625rem;font-weight:800;color:var(--orange);line-height:1}
+.metric small{display:block;font-size:0.8438rem;font-weight:600;margin-top:0.4375rem}
+.metric .arr{font-size:1.25rem;color:#bbb;padding-bottom:1rem}
+
+.rail{margin-top:2.125rem}
+.h2{font-size:1.281rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.625rem;line-height:1.875rem}
+.p-key{font-size:1.25rem;font-weight:700;line-height:1.5}
+.p-key em{font-style:normal;color:var(--orange)}
+.judge{font-size:1.125rem;font-weight:600;color:var(--ink);margin-bottom:0.8125rem;display:flex;align-items:center;gap:0.625rem;flex-wrap:wrap}
+.judge .ar{color:var(--orange);font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.125rem}
+.card2{border:1px solid var(--line);border-radius:1.375rem;padding:1.188rem 1.5rem;background:#fff}
+.card2 .top{font-size:1.094rem;font-weight:700;line-height:1.5;text-align:center}
+.card2 .note{font-size:0.875rem;color:var(--muted);line-height:1.5;text-align:center;margin-top:0.1875rem}
+.card2 .down{display:flex;justify-content:center;margin:0.5rem 0}
+.card2 .dn{width:1.5rem;height:1.5rem}
+.card2 .bot{font-size:1.094rem;font-weight:700;line-height:1.5;text-align:center;background:var(--soft);border-radius:0.9375rem;padding:0.8125rem 1.125rem}
+.conclude{margin-top:0.9375rem;background:var(--orange-soft);border-radius:1.125rem;padding:0.9375rem 1.375rem;font-size:1.25rem;font-weight:800;
+  display:flex;align-items:center;gap:0.9375rem}
+.conclude .big{flex:none;width:2.75rem;height:2.75rem;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center}
+.conclude .big svg{width:1.5rem;height:1.5rem}
+.hard .title{font-size:1.125rem;font-weight:800;margin-bottom:0.8125rem}
+.hard .r{display:grid;grid-template-columns:3.5rem 1fr;gap:0.8125rem;padding:0.6875rem 0;border-top:1px solid var(--line);align-items:start}
+.hard .r:first-of-type{border-top:0;padding-top:0}
+.chip{font-size:0.8125rem;font-weight:700;color:var(--sub);background:var(--soft);border-radius:62.44rem;text-align:center;padding:0.25rem 0}
+.hard .r p{font-size:1.031rem;line-height:1.6;color:var(--ink)}
+.hard .r.res p{font-weight:700}
+.final{background:var(--orange-soft);border-radius:1.25rem;padding:1.375rem 1.625rem;font-size:1.312rem;font-weight:800;line-height:1.5}
+.final em{font-style:normal;color:var(--orange)}
+.card2{overflow:hidden}
+.rail .step{position:relative;padding-left:3.625rem;padding-bottom:2.375rem}
+.rail .step:last-child{padding-bottom:0}
+/* numbered circle: filled only while its step is the one being read */
+.rail .dot{position:absolute;left:0.1562rem;top:0.1562rem;width:1.688rem;height:1.688rem;border-radius:50%;background:#fff;border:2px solid var(--orange);
+  color:var(--orange);font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;
+  transition:background .25s ease,color .25s ease,opacity .25s ease}
+.rail .dot.on{background:var(--orange);color:#fff}
+/* connector arrow: same 0.375rem gap below the circle above and above the circle below; ends at the chevron */
+.rail .flow{position:absolute;left:0.5625rem;top:2.219rem;bottom:0.2188rem;width:0.875rem;clip-path:inset(0 -4px 0 -4px)}
+.rail .flow::before{content:"";position:absolute;left:0.375rem;top:0;bottom:1px;width:2px;border-radius:1px;background:#d0d0d0}
+.rail .flow svg{position:absolute;left:0;bottom:0;width:0.875rem;height:0.5rem}
+
+/* ---------- scroll reveal (only when JS is running) ---------- */
+html.js .page{display:none}
+html.js .page.on{display:block}
+.content{overflow-x:clip}
+html.js .rail .flow{clip-path:inset(0 -4px 100% -4px);transition:clip-path .6s cubic-bezier(.45,0,.25,1)}
+html.js .rail .flow.grow{clip-path:inset(0 -4px -4px -4px)}
+html.js .rv .dot{opacity:0}
+html.js .rv .dot.in{opacity:1}
+html.js .rv .ln{opacity:0;transform:translateX(var(--shift,5.5rem));
+  transition:opacity .6s ease,transform .8s cubic-bezier(.16,.84,.3,1)}
+html.js .rv .ln.in{opacity:1;transform:none}
+html.js .rv .bx{opacity:0;transition:opacity .5s ease}
+html.js .rv .bx.in{opacity:1}
+.noanim,.noanim *{transition:none!important}
+@media (prefers-reduced-motion:reduce){
+  html.js .rv .ln,html.js .rv .bx,html.js .rv .dot{opacity:1;transform:none;transition:none}
+  html.js .rail .flow{clip-path:inset(0 -4px -4px -4px);transition:none}
+}
+@media (max-width:1100px){
+  html{font-size:15px}
+  .wing,.mega{display:none!important}
+  .bar{height:auto;flex-wrap:wrap;padding:12px 16px 0}
+  .logo{width:100%;font-size:17px}
+  .nav{height:44px;width:100%;overflow-x:auto;scrollbar-width:none}
+  .nav li{width:auto;flex:none;padding:0 12px}
+  .nav li:first-child{padding-left:0}
+  .nav li::after{left:12px;right:12px}
+  .nav li:first-child::after{left:0}
+  .nav li a{font-size:15px}
+  :root{--bar:82px}
+  .content{padding:0 20px}
+  .page{padding:32px 0 72px}
+  .hero .name{font-size:40px}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .stat{grid-template-columns:1fr;gap:10px}
+  .stat .txt{white-space:normal}
+  .stat .go{display:none}
+  .caps{grid-template-columns:1fr}
+  .caps::before{display:none}
+  .cap,.cap + .cap{padding:4px 0 12px}
+  .meta .row{grid-template-columns:1fr;gap:4px}
+  .phead{grid-template-columns:1fr}
+  .phead h1{font-size:26px;white-space:normal}
+  .lead{white-space:normal}
+  .duty{grid-template-columns:1fr}
+  .mwrap{justify-content:flex-start;margin-top:22px}
+  .two{grid-template-columns:1fr}
+  .card2 .bot br{display:none}
+  .rail .step{padding-left:44px}
+}
+</style></head>
+<body>
+
+<header class="topbar">
+  <div class="bar"><a class="logo" href="#intro">천지선 포트폴리오</a><ul class="nav"><li><a href="#intro">소개</a></li><li><a href="#project01">신규 제품 기획</a></li><li><a href="#project02">콘텐츠 기획</a></li><li><a href="#project03">협업</a></li></ul></div>
+  <div class="mega"><div class="cols">
+    <div class="col"></div><div class="col"></div><div class="col"></div>
+    <div class="col"><a href="#project03">협력사 대응</a><a href="#project04">통합 관리 체계 구축</a></div>
+  </div></div>
+</header>
+<aside class="wing" id="wing" aria-label="현재 섹션"><div class="in">
+  <div class="h" id="wing-title">소개</div>
+  <div class="list" id="wing-list"><a href="#basic" class="on">기본 사항</a><a href="#stats">한눈에 보는 핵심 성과</a><a href="#caps">핵심 역량</a></div>
+</div></aside>
+<main class="content">
+<section class="page" id="intro" data-wing-title="소개"
+  data-wing-links="기본 사항#basic|한눈에 보는 핵심 성과#stats|핵심 역량#caps">
+  <div class="hero sub" id="basic">
+    <div class="apply">한화금융 신입 공채 · 서비스/사업기획</div>
+    <div class="name">천지선</div>
+  </div>
+
+  <div class="sec sub" id="stats">
+    <div class="sec-head"><h2>한눈에 보는 핵심 성과</h2>
+      <div class="legend"><span><svg class="ico" viewBox="0 0 30 30" fill="none" stroke="#F2995A" stroke-width="2.1" stroke-linecap="round" role="img" aria-label="철저한 자기규율"><line x1="4" y1="4.0" x2="4" y2="26.0"/><line x1="8" y1="4.0" x2="8" y2="26.0"/><line x1="12" y1="4.0" x2="12" y2="26.0"/><line x1="16" y1="4.0" x2="16" y2="26.0"/><line x1="20" y1="4.5" x2="20" y2="25.5"/><line x1="23.5" y1="6.5" x2="23.5" y2="23.5"/><line x1="26.5" y1="9.5" x2="26.5" y2="20.5"/></svg>철저한 자기규율</span><span><svg class="ico" viewBox="0 0 30 30" fill="#C27CD4" role="img" aria-label="창의적 문제 해결"><circle cx="4" cy="5" r="2.1"/><circle cx="9" cy="5" r="2.1"/><circle cx="14" cy="5" r="2.1"/><circle cx="19" cy="5" r="2.1"/><circle cx="24" cy="5" r="2.1"/><circle cx="14" cy="10" r="2.1"/><circle cx="14" cy="15" r="2.1"/><circle cx="14" cy="20" r="2.1"/><circle cx="14" cy="25" r="2.1"/></svg>창의적 문제 해결</span><span><svg class="ico" viewBox="0 0 30 30" fill="#7DB86E" role="img" aria-label="뚜렷한 목적의식"><rect x="4.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="10.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="16.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="19.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="22.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="25.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="10.8" width="2.4" height="2.4" rx=".3"/></svg>뚜렷한 목적의식</span></div></div>
+    <div class="stats"><a class="stat" href="#project01"><div><div class="pj">신규 제품 기획</div><div class="txt">시장 점유율 <span class="big">3.1% → 15.1%</span></div></div><div class="icons"><svg class="ico" viewBox="0 0 30 30" fill="none" stroke="#F2995A" stroke-width="2.1" stroke-linecap="round" role="img" aria-label="철저한 자기규율"><line x1="4" y1="4.0" x2="4" y2="26.0"/><line x1="8" y1="4.0" x2="8" y2="26.0"/><line x1="12" y1="4.0" x2="12" y2="26.0"/><line x1="16" y1="4.0" x2="16" y2="26.0"/><line x1="20" y1="4.5" x2="20" y2="25.5"/><line x1="23.5" y1="6.5" x2="23.5" y2="23.5"/><line x1="26.5" y1="9.5" x2="26.5" y2="20.5"/></svg><svg class="ico" viewBox="0 0 30 30" fill="#C27CD4" role="img" aria-label="창의적 문제 해결"><circle cx="4" cy="5" r="2.1"/><circle cx="9" cy="5" r="2.1"/><circle cx="14" cy="5" r="2.1"/><circle cx="19" cy="5" r="2.1"/><circle cx="24" cy="5" r="2.1"/><circle cx="14" cy="10" r="2.1"/><circle cx="14" cy="15" r="2.1"/><circle cx="14" cy="20" r="2.1"/><circle cx="14" cy="25" r="2.1"/></svg><svg class="ico" viewBox="0 0 30 30" fill="#7DB86E" role="img" aria-label="뚜렷한 목적의식"><rect x="4.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="10.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="16.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="19.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="22.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="25.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="10.8" width="2.4" height="2.4" rx=".3"/></svg></div><span class="go">자세히 →</span></a><a class="stat" href="#project02"><div><div class="pj">콘텐츠 기획</div><div class="txt">발행 콘텐츠마다 조회 수 <span class="big">2천 회 이상</span> 달성</div></div><div class="icons"><svg class="ico" viewBox="0 0 30 30" fill="none" stroke="#F2995A" stroke-width="2.1" stroke-linecap="round" role="img" aria-label="철저한 자기규율"><line x1="4" y1="4.0" x2="4" y2="26.0"/><line x1="8" y1="4.0" x2="8" y2="26.0"/><line x1="12" y1="4.0" x2="12" y2="26.0"/><line x1="16" y1="4.0" x2="16" y2="26.0"/><line x1="20" y1="4.5" x2="20" y2="25.5"/><line x1="23.5" y1="6.5" x2="23.5" y2="23.5"/><line x1="26.5" y1="9.5" x2="26.5" y2="20.5"/></svg><svg class="ico" viewBox="0 0 30 30" fill="#C27CD4" role="img" aria-label="창의적 문제 해결"><circle cx="4" cy="5" r="2.1"/><circle cx="9" cy="5" r="2.1"/><circle cx="14" cy="5" r="2.1"/><circle cx="19" cy="5" r="2.1"/><circle cx="24" cy="5" r="2.1"/><circle cx="14" cy="10" r="2.1"/><circle cx="14" cy="15" r="2.1"/><circle cx="14" cy="20" r="2.1"/><circle cx="14" cy="25" r="2.1"/></svg><svg class="ico" viewBox="0 0 30 30" fill="#7DB86E" role="img" aria-label="뚜렷한 목적의식"><rect x="4.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="10.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="16.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="19.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="22.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="25.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="10.8" width="2.4" height="2.4" rx=".3"/></svg></div><span class="go">자세히 →</span></a><a class="stat" href="#project03"><div><div class="pj">협력사 대응</div><div class="txt">마감 한 달 전 기능 구현 불가 통보 → <span class="big">마감 내 완성</span></div></div><div class="icons"><svg class="ico" viewBox="0 0 30 30" fill="none" stroke="#F2995A" stroke-width="2.1" stroke-linecap="round" role="img" aria-label="철저한 자기규율"><line x1="4" y1="4.0" x2="4" y2="26.0"/><line x1="8" y1="4.0" x2="8" y2="26.0"/><line x1="12" y1="4.0" x2="12" y2="26.0"/><line x1="16" y1="4.0" x2="16" y2="26.0"/><line x1="20" y1="4.5" x2="20" y2="25.5"/><line x1="23.5" y1="6.5" x2="23.5" y2="23.5"/><line x1="26.5" y1="9.5" x2="26.5" y2="20.5"/></svg><span class="slot"></span><svg class="ico" viewBox="0 0 30 30" fill="#7DB86E" role="img" aria-label="뚜렷한 목적의식"><rect x="4.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="10.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="16.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="19.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="22.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="25.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="10.8" width="2.4" height="2.4" rx=".3"/></svg></div><span class="go">자세히 →</span></a><a class="stat" href="#project04"><div><div class="pj">통합 관리 체계 구축</div><div class="txt">협력 제작물 <span class="big">2,000여 개</span> 관리 체계 통일</div></div><div class="icons"><svg class="ico" viewBox="0 0 30 30" fill="none" stroke="#F2995A" stroke-width="2.1" stroke-linecap="round" role="img" aria-label="철저한 자기규율"><line x1="4" y1="4.0" x2="4" y2="26.0"/><line x1="8" y1="4.0" x2="8" y2="26.0"/><line x1="12" y1="4.0" x2="12" y2="26.0"/><line x1="16" y1="4.0" x2="16" y2="26.0"/><line x1="20" y1="4.5" x2="20" y2="25.5"/><line x1="23.5" y1="6.5" x2="23.5" y2="23.5"/><line x1="26.5" y1="9.5" x2="26.5" y2="20.5"/></svg><span class="slot"></span><svg class="ico" viewBox="0 0 30 30" fill="#7DB86E" role="img" aria-label="뚜렷한 목적의식"><rect x="4.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="10.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="16.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="19.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="22.8" width="2.4" height="2.4" rx=".3"/><rect x="4.8" y="25.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="1.8" width="2.4" height="2.4" rx=".3"/><rect x="7.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="10.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="13.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="16.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="19.8" y="13.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="4.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="7.8" width="2.4" height="2.4" rx=".3"/><rect x="20.8" y="10.8" width="2.4" height="2.4" rx=".3"/></svg></div><span class="go">자세히 →</span></a></div>
+  </div>
+
+  <div class="sec sub" id="caps">
+    <div class="sec-head"><h2>핵심 역량</h2></div>
+    <div class="caps">
+      <div class="cap"><h3>콘텐츠/서비스 기획</h3><ul>
+        <li>고객 인사이트 기반 신규 콘텐츠 상품 기획</li>
+        <li>경쟁 제품 분석 및 차별화 전략 수립</li>
+        <li>주간 콘텐츠 아이템 기획 및 멀티 포맷 제작</li>
+        <li>반응 지표 기반 후속 콘텐츠 기획</li></ul></div>
+      <div class="cap"><h3>협업, 실행 관리</h3><ul>
+        <li>외부 개발 협력사와 기능 범위 조율 및 대안 제시</li>
+        <li>2,000여 개 제작물 일정·검수 관리 체계 구축</li>
+        <li>사내 의사결정자 설득 및 기획안 채택</li></ul></div>
+    </div>
+    <div class="meta">
+      <div class="row"><b>사용 가능 툴</b><p>한글, MS Word, MS PowerPoint, MS Excel, MS Access, Adobe Premiere Pro</p></div>
+      <div class="row"><b>자격증</b><p>ADsP, 컴퓨터활용능력 1급, 매경TEST 우수</p></div>
+    </div>
+  </div>
+</section>
+<section class="page" id="project01" data-wing-title="신규 제품 기획"
+  data-wing-tags="#신규 콘텐츠 기획|#고객 인사이트|#사업화 설득">
+<div class="phead">
+  <div class="stack">
+    <div class="eyebrow">동아출판 · 2024.01.29 – 2025.01.28</div>
+    <h1>점유율을 12%p 끌어올린 업계 최초 콘셉트의 교과서 기획</h1>
+    <p class="lead">개선을 거듭해도 오르지 않던 점유율 문제의 정답을 교과서 밖, 학생들이 콘텐츠를 소비하는 방식에서 찾다.</p>
+    <div class="duty">
+      <em>담당 업무</em><p>기획안 제안 · 디지털 콘텐츠 제작 · 교과서 홍보 영상 제작</p>
+      <em>관련 JD</em><ul>
+        <li>고객 인사이트 기반 신규 서비스·콘텐츠 기획 및 제작</li>
+        <li>서비스 기획서·사업 계획 수립 및 유관 부서 협업을 통한 실행</li>
+        <li>신규 사업·서비스 런칭 경험</li></ul>
+    </div>
+  </div>
+  <div class="mwrap"><div class="metric"><div class="lab">시장<br>점유율</div>
+    <div class="row"><div class="before">3.1%<small>8위</small></div><div class="arr">→</div>
+    <div class="after">15.1%<small>3위</small></div></div></div></div>
+</div><div class="rail"><div class="step"><div class="dot on">1</div><span class="flow" aria-hidden="true"><svg viewBox="0 0 14 8" fill="none" stroke="#d0d0d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5l5.5 5.5 5.5-5.5"/></svg></span><div class="h2"><span class="ttl">문제 인식</span></div>
+<p class="p-key">꾸준한 개선에도 점유율 3.1%(8위). 목표를 점유율 <em>4위</em>로 설정</p></div><div class="step rv"><div class="dot">2</div><span class="flow" aria-hidden="true"><svg viewBox="0 0 14 8" fill="none" stroke="#d0d0d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5l5.5 5.5 5.5-5.5"/></svg></span><div class="h2 ln" data-b="0">해결 과정</div>
+<p class="judge ln" data-b="1">꾸준한 개선에도 점유율 상승 실패 <span class="ar">→</span> 완성도가 아닌 방향의 문제라 판단</p>
+<div class="two">
+  <div class="card2 bx" data-b="2"><div class="top ln" data-b="2">경쟁사 포함 12종 전수 분석</div>
+    <div class="note ln" data-b="3">비교 항목: 작품, 단원 구성, 단원 내 구조, 활동 수, 줄글 비율, 디자인 등</div>
+    <div class="down ln" data-b="4"><svg class="dn" viewBox="0 0 24 24" fill="none" stroke="#F27322" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15"/><path d="M6 13l6 6 6-6"/></svg></div>
+    <div class="bot ln" data-b="5">상위권 교과서는 학생의 <br>한문 학습 장벽 해소에 집중</div></div>
+  <div class="card2 bx" data-b="2"><div class="top ln" data-b="2">학생들의 콘텐츠 소비 방식 조사</div>
+    <div class="note ln" data-b="3">조사 항목: 여가 활용, 콘텐츠 소비, 수업 자료 활용 현황</div>
+    <div class="down ln" data-b="4"><svg class="dn" viewBox="0 0 24 24" fill="none" stroke="#F27322" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15"/><path d="M6 13l6 6 6-6"/></svg></div>
+    <div class="bot ln" data-b="5">영상 세대인데도 교과서의 동영상 활용은 <br>업계 전반에서 미흡</div></div>
+</div>
+<div class="conclude ln" data-b="6"><span class="big"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="M13 5l7 7-7 7"/></svg></span>업계 최초 ‘동영상으로 배우는 여행 콘셉트’의 교과서 제안</div></div><div class="step rv"><div class="dot">3</div><span class="flow" aria-hidden="true"><svg viewBox="0 0 14 8" fill="none" stroke="#d0d0d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5l5.5 5.5 5.5-5.5"/></svg></span><div class="h2 ln" data-b="0">어려움</div>
+<div class="two hard">
+  <div class="card2 bx" data-b="1"><div class="title ln" data-b="1">내부 설득</div>
+    <div class="r ln" data-b="2"><span class="chip">상황</span><p>“완전히 새로 개발해야 하고 성공이 불확실하다”는 반대에 부딪힘</p></div>
+    <div class="r ln" data-b="3"><span class="chip">대응</span><p>점유율 추이 그래프 + 상위권과 자사 교과서의 항목별 비교(사진)를 기획서에 담아 설득</p></div>
+    <div class="r res ln" data-b="4"><span class="chip">결과</span><p>기획안 채택</p></div></div>
+  <div class="card2 bx" data-b="1"><div class="title ln" data-b="1">실행</div>
+    <div class="r ln" data-b="2"><span class="chip">상황</span><p>선례가 없어 팀 전체가 방향을 잡지 못함</p></div>
+    <div class="r ln" data-b="3"><span class="chip">대응</span><p>언제 영상을 어떻게 활용할지 논의하고 여러 차례 시안을 만들며 담당자와 상의해 영상 제작 양식 기준 수립</p></div>
+    <div class="r res ln" data-b="4"><span class="chip">결과</span><p>전체적인 교과서의 틀이 잡혔고 영상 제작 속도도 향상</p></div></div>
+</div></div><div class="step rv"><div class="dot">4</div><div class="h2 ln" data-b="0">결과</div>
+<div class="final ln" data-b="1">시장 점유율 <em>15.1%(3위)</em> 달성 및 스스로 세운 목표(4위) 초과 달성</div></div></div>
+</section>
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  root.classList.add('js');
+  var reduce=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var pages={}; [].forEach.call(document.querySelectorAll('.page'),function(p){pages[p.id]=p;});
+  var wing=document.getElementById('wing'), wt=document.getElementById('wing-title'), wl=document.getElementById('wing-list');
+  var topbar=document.querySelector('.topbar');
+  var cur=null;
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+
+  function barH(){ return topbar.getBoundingClientRect().height; }
+  function maxScroll(){ return root.scrollHeight-window.innerHeight; }
+  function jumpTo(y){                                    /* instant, never smooth */
+    root.style.scrollBehavior='auto';
+    try{ window.scrollTo({top:y,left:0,behavior:'instant'}); }catch(e){ window.scrollTo(0,y); }
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ root.style.scrollBehavior=''; }); });
+  }
+  function later(ms,fn){ var t=setTimeout(fn,ms); timers.push(t); }
+  var timers=[];
+
+  /* ---------- pages ---------- */
+  function show(id,push){
+    var p=pages[id]; if(!p) return;
+    Object.keys(pages).forEach(function(k){ pages[k].classList.toggle('on',k===id); });
+    cur=p; jumpTo(0); renderWing(p); resetAnim(p); placeWing(true); onScroll();
+    if(push){ try{ history.pushState({page:id},'','#'+id); }catch(e){} }
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest?e.target.closest('a[href^="#"]'):null; if(!a) return;
+    var id=a.getAttribute('href').slice(1); e.preventDefault();
+    if(pages[id]){
+      if(pages[id]!==cur) show(id,true); else window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+      return;
+    }
+    var el=id&&document.getElementById(id);
+    if(el){ var p=el.closest('.page'); if(p&&p!==cur) show(p.id,true); el.scrollIntoView({behavior:reduce?'auto':'smooth'}); }
+    /* links to pages that are not built yet do nothing */
+  });
+  window.addEventListener('popstate',function(){
+    var id=(location.hash||'#intro').slice(1); show(pages[id]?id:'intro',false);
+  });
+
+  /* ---------- wing ---------- */
+  var base=0, wy=null, raf=null;
+  function renderWing(p){
+    wt.textContent=p.getAttribute('data-wing-title');
+    var links=p.getAttribute('data-wing-links'), tags=p.getAttribute('data-wing-tags');
+    wl.innerHTML=links
+      ? links.split('|').map(function(x){var i=x.lastIndexOf('#'); return '<a href="'+x.slice(i)+'">'+x.slice(0,i)+'</a>';}).join('')
+      : (tags||'').split('|').map(function(x){return '<span>'+x+'</span>';}).join('');
+    curSub=null;
+  }
+  function anchorY(){            /* page-specific starting height (document coordinates) */
+    var sy=window.scrollY;
+    if(cur.id==='intro'){
+      var n=cur.querySelector('.hero .name').getBoundingClientRect(), h=cur.querySelector('#stats h2').getBoundingClientRect();
+      return sy+(n.bottom+h.top)/2;                       /* midway between 천지선 and 한눈에 보는 핵심 성과 */
+    }
+    var m=cur.querySelector('.metric');
+    if(m){ var r=m.getBoundingClientRect(); return sy+r.top+r.height*0.75; }   /* lowest quarter line of the 점유율 box */
+    return sy+120;
+  }
+  function target(){
+    var t=base+window.scrollY;
+    var end=document.querySelector('main').getBoundingClientRect().bottom+window.scrollY-wing.offsetHeight-24;
+    return Math.max(base,Math.min(t,end));
+  }
+  function paint(){ wing.style.transform='translate3d(0,'+wy.toFixed(1)+'px,0)'; }
+  function tick(){
+    var t=target(); wy+=(t-wy)*0.12;
+    if(Math.abs(t-wy)<0.4){ wy=t; raf=null; } else raf=requestAnimationFrame(tick);
+    paint();
+  }
+  function placeWing(jump){
+    base=anchorY();
+    if(jump||wy===null||reduce){ wy=target(); paint(); }
+    else if(!raf) raf=requestAnimationFrame(tick);
+  }
+
+  /* 소개: highlight the wing link of the block being read */
+  var curSub=null;
+  function pick(list,line){ var hit=list[0]; list.forEach(function(el){ if(el.getBoundingClientRect().top<=line) hit=el; }); return hit; }
+  function updateSub(){
+    var subs=[].slice.call(cur.querySelectorAll('.sub')); if(!subs.length) return;
+    var line=barH()+window.innerHeight*0.2;
+    var s=window.scrollY<4?subs[0]:pick(subs,line);
+    if(window.scrollY>=maxScroll()-2) s=subs[subs.length-1];
+    if(s===curSub) return; curSub=s;
+    [].forEach.call(wl.querySelectorAll('a'),function(a){ a.classList.toggle('on',a.getAttribute('href')==='#'+s.id); });
+  }
+
+  /* ---------- PROJECT reveal ---------- */
+  var steps=null, shown=1, busy=false, touched=false;
+  function resetAnim(p){
+    timers.forEach(clearTimeout); timers=[]; busy=false; touched=false;
+    var list=p.querySelectorAll('.rail .step');
+    steps=list.length?[].slice.call(list):null; if(!steps) return;
+    p.classList.add('noanim');
+    [].forEach.call(p.querySelectorAll('.rail .in'),function(el){ el.classList.remove('in'); el.style.transitionDelay=''; });
+    [].forEach.call(p.querySelectorAll('.rail .grow'),function(el){ el.classList.remove('grow'); });
+    var ttl=p.querySelector('.rail .ttl');                 /* slide starts where "문제 인식" ends */
+    if(ttl) p.style.setProperty('--shift',ttl.getBoundingClientRect().width+'px');
+    void p.offsetWidth; p.classList.remove('noanim');
+    shown=1;
+    if(reduce){ steps.forEach(function(s,i){ if(i) revealNow(i); }); shown=steps.length; }
+    setDots();
+  }
+  function revealNow(k){
+    var prev=steps[k-1].querySelector('.flow'); if(prev) prev.classList.add('grow');
+    steps[k].querySelector('.dot').classList.add('in');
+    [].forEach.call(steps[k].querySelectorAll('[data-b]'),function(el){ el.classList.add('in'); });
+  }
+  function ready(k){
+    var ms=maxScroll();
+    if(!touched && window.scrollY<4 && ms>40) return false;   /* nothing moves until the reader scrolls */
+    return steps[k].getBoundingClientRect().top<window.innerHeight*0.85 || window.scrollY>=ms-4;
+  }
+  function next(){
+    if(!steps||busy||shown>=steps.length||!ready(shown)) return;
+    var k=shown; busy=true;
+    var flow=steps[k-1].querySelector('.flow');
+    var d=Math.round(Math.max(380,Math.min(900,flow.getBoundingClientRect().height*1.4)));
+    flow.style.transitionDuration=d+'ms'; flow.classList.add('grow');
+    later(d,function(){
+      var s=steps[k], maxb=0;
+      s.querySelector('.dot').classList.add('in');
+      [].forEach.call(s.querySelectorAll('[data-b]'),function(el){
+        var b=+el.getAttribute('data-b'); if(b>maxb) maxb=b;
+        el.style.transitionDelay=(b*110)+'ms'; el.classList.add('in');
+      });
+      shown=k+1; setDots();
+      later(maxb*110+350,function(){ busy=false; next(); });
+    });
+  }
+  function setDots(){
+    if(!steps) return;
+    var line=barH()+(window.innerHeight-barH())*0.45, act=0;
+    for(var i=0;i<shown;i++){ if(steps[i].getBoundingClientRect().top<=line) act=i; }
+    if(window.scrollY>=maxScroll()-4) act=shown-1;
+    steps.forEach(function(s,i){ s.querySelector('.dot').classList.toggle('on',i===act); });
+  }
+
+  /* ---------- wiring ---------- */
+  var ticking=false;
+  function onScroll(){
+    if(!cur) return;
+    if(window.scrollY>4) touched=true;
+    placeWing(false); updateSub(); next(); setDots();
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(function(){ ticking=false; onScroll(); }); } },{passive:true});
+  ['wheel','touchmove','keydown'].forEach(function(ev){ window.addEventListener(ev,function(){ touched=true; next(); },{passive:true}); });
+  window.addEventListener('resize',function(){ if(!cur) return; placeWing(true); onScroll(); });
+
+  try{ if(location.hash) history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+  show('intro',false);                                     /* the file always opens on 소개 */
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){      /* re-measure once Pretendard is in */
+    if(!cur) return; var t=cur.querySelector('.rail .ttl');
+    if(t) cur.style.setProperty('--shift',t.getBoundingClientRect().width+'px');
+    placeWing(true); onScroll();
+  });
+})();
+</script>
+</body></html>
